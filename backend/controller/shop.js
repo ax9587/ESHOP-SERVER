@@ -65,13 +65,18 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
         to_email: seller.email,       
       };
     console.log('PREP SEND EMAIL!'); 
-
+    //console.log(process.env.EMAILJS_SERVICE_ID);
 
         emailjs
-        .send('service_26gu7lg', 'template_8340vwk', templateParams, {
+        /* .send('service_26gu7lg', 'template_8340vwk', templateParams, {
           publicKey: '2Nu6da8ylo7fMHjJU',
           privateKey: 'okPK91rmFovTL-t8U3BFz', // optional, highly recommended for security reasons
-        })
+        }) */
+        
+        .send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, templateParams, {
+          publicKey: process.env.EMAILJS_PUBLIC_KEY,
+          privateKey: process.env.EMAILJS_PRIVATE_KEY, // optional, highly recommended for security reasons
+        }) 
         .then(
           function (response) {
             console.log('SUCCESS!', response.status, response.text);
