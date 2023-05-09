@@ -3,6 +3,16 @@ npm install @emailjs/browser --save --legacy-peer-deps
 npm uninstall @emailjs/browser
 npm install @emailjs/nodejs --legacy-peer-deps
 
+1.Vercel
+1-vercel.json
+
+    "builds": [
+      {
+        "src": "/backend/server.js",  // Specify file to convert to a serverless function
+        "use": "@vercel/node"        // Specify the NPM module that is used for the build
+      }
+    ],
+
 ##_**DISCLAIMER**_
 This project has moved maintainers and is no longer developed here. The up to date template can be found [here](https://github.com/rennemannd/MERN-Template).
 
