@@ -1,5 +1,5 @@
-const app = require("./app");
-const connectDatabase = require("./db/Database");
+const app = require("./backend/app");
+const connectDatabase = require("./backend/db/Database");
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
