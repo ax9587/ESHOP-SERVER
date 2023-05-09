@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon backend/server.js",
-    "start": "node backend/server.js"
+    "dev": "nodemon backend/index.js",
+    "start": "node backend/index.js"
   },
   "author": "shahriar Sajeeb",
   "license": "ISC",
