@@ -46,9 +46,9 @@ router.post("/create-user", async (req, res, next) => {
 
     //const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
-    //const activationUrl = `${process.env.FRONT_END_URL}/activation/${activationToken}`;
+    const activationUrl = `${process.env.FRONT_END_URL}/activation/${activationToken}`;
 
-    const activationUrl = `https://eshop-front-sigma.vercel.app/activation/${activationToken}`;
+    //const activationUrl = `https://eshop-front-sigma.vercel.app/activation/${activationToken}`;
 
     /* try {
       await sendMail({
@@ -68,7 +68,7 @@ router.post("/create-user", async (req, res, next) => {
       from_name: "X",
       to_name: name,
       message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
-      to_email: email,       
+      to_email: user.email,       
     };
 
     console.log(templateParams);
