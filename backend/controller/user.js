@@ -70,6 +70,8 @@ router.post("/create-user", async (req, res, next) => {
       message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
       to_email: email,       
     };
+
+    console.log(templateParams);
     emailjs
      /*    .send('service_26gu7lg', 'template_8340vwk', templateParams, {
           publicKey: '2Nu6da8ylo7fMHjJU',
