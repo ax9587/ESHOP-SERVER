@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ['http://localhost:3000','https://eshop-front-sigma.vercel.app','https://www.emailjs.com'],
     //origin: "https://eshop-front-sigma.vercel.app/",
     credentials: true,
   })
