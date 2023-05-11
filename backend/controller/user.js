@@ -16,6 +16,7 @@ const emailjs= require("@emailjs/nodejs");
 //router.post("/create-user", upload.single("file"), async (req, res, next) => {
 router.post("/create-user", async (req, res, next) => {
   try {
+    console.log(req);
     const { name, email, password } = req.body;
     const userEmail = await User.findOne({ email });
 
