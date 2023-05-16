@@ -13,7 +13,7 @@ const { isAuthenticated } = require("../middleware/auth");
 const user = require("../model/user");
 const emailjs= require("@emailjs/nodejs");
 
-router.post("/create-user", upload.single("file"), async (req, res, next) => {
+//router.post("/create-user", upload.single("file"), async (req, res, next) => {
 //router.post("/create-user", async (req, res, next) => {
   try {
     console.log(req);
