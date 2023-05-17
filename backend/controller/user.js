@@ -77,12 +77,14 @@ router.post(
 
       console.log('activation_token',activation_token);
 
-      console.log('ACTIVATION_SECRET',process.env.ACTIVATION_SECRET);
+      //console.log('ACTIVATION_SECRET',process.env.ACTIVATION_SECRET);
 
       const newUser = jwt.verify(
         activation_token,
         process.env.ACTIVATION_SECRET
       );
+
+      console.log('newUser',newUser);
 
       if (!newUser) {
         return next(new ErrorHandler("Invalid token", 400));
