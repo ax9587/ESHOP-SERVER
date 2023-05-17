@@ -92,7 +92,7 @@ router.post(
 
       //const { name, email, password, avatar } = newUser;
       const { name, email, password, } = newUser;
-      const avatar=''
+      const avatar='';
 
       let user = await User.findOne({ email });
 
@@ -108,6 +108,7 @@ router.post(
 
       sendToken(user, 201, res);
     } catch (error) {
+      console.log(error);
       return next(new ErrorHandler(error.message, 500));
     }
   })
