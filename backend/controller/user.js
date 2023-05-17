@@ -12,6 +12,7 @@ const sendToken = require("../utils/jwtToken");
 const { isAuthenticated } = require("../middleware/auth");
 const user = require("../model/user");
 const emailjs= require("@emailjs/nodejs");
+const sendEMail = require("../utils/sendEMail");
 
 //router.post("/create-user", upload.single("file"), async (req, res, next) => {
 router.post("/create-user", async (req, res, next) => {
@@ -73,11 +74,12 @@ router.post("/create-user", async (req, res, next) => {
     };
 
     console.log(templateParams);
-    emailjs
-     /*    .send('service_26gu7lg', 'template_8340vwk', templateParams, {
+       /*    .send('service_26gu7lg', 'template_8340vwk', templateParams, {
           publicKey: '2Nu6da8ylo7fMHjJU',
           privateKey: 'okPK91rmFovTL-t8U3BFz', // optional, highly recommended for security reasons
         }) */
+   /*  emailjs
+  
         .send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, templateParams, {
           publicKey: process.env.EMAILJS_PUBLIC_KEY,
           privateKey: process.env.EMAILJS_PRIVATE_KEY, // optional, highly recommended for security reasons
@@ -89,7 +91,17 @@ router.post("/create-user", async (req, res, next) => {
           function (err) {
             console.log('FAILED...', err);
           },
-        );   
+        ); 
+         */
+          try {
+      await sendEMail(templateParams);
+      res.status(201).json({
+        success: true,
+        message: `please check your email:- ${user.email} to activate your account!`,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    } 
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
