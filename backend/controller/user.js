@@ -14,7 +14,7 @@ const user = require("../model/user");
 const emailjs= require("@emailjs/nodejs");
 const sendEMail = require("../utils/sendEMail");
 
-//router.post("/create-user", upload.single("file"), async (req, res, next) => {
+
 router.post("/create-user", async (req, res, next) => {
   try {
     console.log(req);
@@ -22,20 +22,9 @@ router.post("/create-user", async (req, res, next) => {
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      //File upload 
-      /* const filename = req.file.filename;
-      const filePath = `uploads/${filename}`;
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.log(err);
-          res.status(500).json({ message: "Error deleting file" });
-        }
-      }); */
       return next(new ErrorHandler("User already exists", 400));
     }
 
-    /* const filename = req.file.filename;
-    const fileUrl = path.join(filename); */
 
     const user = {
       name: name,
@@ -46,54 +35,19 @@ router.post("/create-user", async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    //const activationUrl = `http://localhost:3000/activation/${activationToken}`;
-
     const activationUrl = `${process.env.FRONT_END_URL}/activation/${activationToken}`;
 
-    //const activationUrl = `https://eshop-front-sigma.vercel.app/activation/${activationToken}`;
-
-    /* try {
-      await sendMail({
-        email: user.email,
-        subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
-      });
-      res.status(201).json({
-        success: true,
-        message: `please check your email:- ${user.email} to activate your account!`,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    } */
 
     var templateParams = {
-      from_name: "X",
+      from_name: "Calgary 101",
       to_name: name,
       message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
       to_email: user.email,       
     };
 
-    console.log(templateParams);
-       /*    .send('service_26gu7lg', 'template_8340vwk', templateParams, {
-          publicKey: '2Nu6da8ylo7fMHjJU',
-          privateKey: 'okPK91rmFovTL-t8U3BFz', // optional, highly recommended for security reasons
-        }) */
-   /*  emailjs
-  
-        .send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, templateParams, {
-          publicKey: process.env.EMAILJS_PUBLIC_KEY,
-          privateKey: process.env.EMAILJS_PRIVATE_KEY, // optional, highly recommended for security reasons
-        }) 
-        .then(
-          function (response) {
-            console.log('SUCCESS!', response.status, response.text);
-          },
-          function (err) {
-            console.log('FAILED...', err);
-          },
-        ); 
-         */
-          try {
+   //console.log(templateParams);
+      
+   try {
       await sendEMail(templateParams);
       res.status(201).json({
         success: true,
