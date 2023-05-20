@@ -18,7 +18,7 @@ const sendEMail = require("../utils/sendEMail");
 router.post("/create-user", async (req, res, next) => {
   try {
     console.log(req);
-    const { name, email, password } = req.body;
+    const { name, email, password, avatar } = req.body;
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
@@ -30,7 +30,7 @@ router.post("/create-user", async (req, res, next) => {
       name: name,
       email: email,
       password: password,
-      //avatar: fileUrl,
+      avatar: avatar,
     };
 
     const activationToken = createActivationToken(user);
