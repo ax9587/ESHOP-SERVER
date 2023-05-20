@@ -1,15 +1,6 @@
 const mongoose = require("mongoose");
 
 const imageSchema = new mongoose.Schema({
-    filename : {
-        type : String,
-        unique : false,
-        required: false
-    },
-    contentType : {
-        type: String,
-        required : false
-    },
     imageBase64 : {
         type : String,
         required: false
