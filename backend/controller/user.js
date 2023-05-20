@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const User = require("../model/user");
+const Image64 = require("../model/image");
 const router = express.Router();
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
@@ -21,6 +22,13 @@ router.post("/create-user", async (req, res, next) => {
     const { name, email, password, avatar } = req.body;
     //console.log('avatar');
     //console.log(avatar);
+    const img = {
+      imageBase64: avatar,
+    };
+    if (avatar) {
+      avatarImg = await Image64.create(img);
+    }
+   
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
@@ -32,7 +40,7 @@ router.post("/create-user", async (req, res, next) => {
       name: name,
       email: email,
       password: password,
-      avatar: ' ',
+      avatar: avatarImg ? avatarImg._id : null,
     };
 
     const activationToken = createActivationToken(user);
