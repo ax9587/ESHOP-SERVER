@@ -17,8 +17,10 @@ const sendEMail = require("../utils/sendEMail");
 
 router.post("/create-user", async (req, res, next) => {
   try {
-    console.log(req);
+    //console.log(req);
     const { name, email, password, avatar } = req.body;
+    console.log('avatar');
+    console.log(avatar);
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
