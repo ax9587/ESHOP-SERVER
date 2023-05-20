@@ -19,7 +19,7 @@ router.post("/create-user", async (req, res, next) => {
   try {
     //console.log(req);
     const { name, email, password, avatar } = req.body;
-    console.log('avatar');
+    //console.log('avatar');
     //console.log(avatar);
     const userEmail = await User.findOne({ email });
 
@@ -32,7 +32,7 @@ router.post("/create-user", async (req, res, next) => {
       name: name,
       email: email,
       password: password,
-      avatar: avatar,
+      avatar: ' ',
     };
 
     const activationToken = createActivationToken(user);
