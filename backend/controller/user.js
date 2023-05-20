@@ -101,9 +101,8 @@ router.post(
       }
 
       //const { name, email, password, avatar } = newUser;
-      const { name, email, password, } = newUser;
-      const avatar='x';
-
+      const { name, email, password, avatar } = newUser;
+      
       let user = await User.findOne({ email });
 
       if (user) {
