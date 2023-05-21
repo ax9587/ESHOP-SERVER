@@ -9,15 +9,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:3000','https://eshop-front-sigma.vercel.app','https://www.emailjs.com'],
+    origin: ['http://localhost:3000','https://eshop-front-sigma.vercel.app','https://eshop-server-gules.vercel.app/','https://www.emailjs.com'],
     credentials: true,
   })
 );
-app.use(function(req, res, next) {
+/* app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
-app.use("/", express.static("uploads"));
+app.use("/", express.static("uploads")); */
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // config
