@@ -11,6 +11,7 @@ app.use(
   cors({
     origin: ['http://localhost:3000','https://eshop-front-sigma.vercel.app','https://eshop-server-gules.vercel.app/','https://www.emailjs.com'],
     credentials: true,
+    exposedHeaders: ["set-cookie"],
   })
 );
 /* app.use(function(req, res, next) {
