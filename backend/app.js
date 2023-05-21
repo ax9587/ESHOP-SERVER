@@ -13,6 +13,10 @@ app.use(
     credentials: true,
   })
 );
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 app.use("/", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
