@@ -127,7 +127,10 @@ router.post(
   "/login-user",
   catchAsyncErrors(async (req, res, next) => {
     try {
+      //console.log(req.body);
       const { email, password } = req.body;
+   //const email=req.body.email;
+   //const password1=req.body.password;
 
       if (!email || !password) {
         return next(new ErrorHandler("Please provide the all fields!", 400));
@@ -147,7 +150,10 @@ router.post(
         );
       }
 
-      sendToken(user, 201, res);
+      //sendToken(user, 201, res);
+      //const { password, ...others } = user._doc;
+      const accessToken = user.getJwtToken();
+      res.status(200).json({user, accessToken});
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
