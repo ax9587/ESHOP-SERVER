@@ -32,6 +32,10 @@ const postSchema = new mongoose.Schema({
       type: String,
     },
   ],
+  image: {
+    type: String,
+    required: false,
+  },
   reviews: [
     {
       user: {
